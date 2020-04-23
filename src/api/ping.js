@@ -1,5 +1,5 @@
-var express = require('express')
-var app = (module.exports = express())
+const express = require('express')
+const app = (module.exports = express())
 
 app.get('/ping', async (req, res) => {
   res.send({

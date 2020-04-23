@@ -1,8 +1,11 @@
 const express = require('express')
+const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
+
+const DB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/baseServer'
 
 // I. Build the app
 const app = express()
@@ -18,7 +21,18 @@ app.use(bodyParser.json({ limit: '50mb' }))
 // Parse cookies
 app.use(cookieParser()) // TODO(carter): Add JWT secret parsing
 
-// III. Set up the routes
+// III. Connect to DB
+
+// Configure with generous options
+mongoose.connect(DB_URI, {
+  keepAlive: 30000,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true,
+  connectTimeoutMS: 60000,
+})
+mongoose.Promise = require('bluebird')
+
+// IV. Set up the routes
 // Set the routes:
 app.get('/', async (req, res) => {
   res.send('Base API')
@@ -26,7 +40,7 @@ app.get('/', async (req, res) => {
 
 app.use('/api', require('./api'))
 
-// IV. Start the server
+// V. Start the server
 const port = process.env.PORT || 5000
 app.listen(port)
 
