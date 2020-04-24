@@ -1,6 +1,4 @@
 const express = require('express')
-const app = express()
+const app = (module.exports = express())
 
 app.use(require('./ping'))
-
-module.exports = app
