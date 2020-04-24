@@ -13,9 +13,7 @@ module.exports = {
   },
   rules: {
     curly: [2, 'all'],
-    indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'comma-dangle': ['error', 'always-multiline'],
     'max-len': [2, { code: 100, tabWidth: 2, ignoreUrls: true }],

@@ -6,7 +6,7 @@ Set up ready to go with:
 
 - Express routes set up
 - Basic libraries (lodash, bluebird, request-promise, etc.) installed
-- HTTP request Logging (moran)
+- HTTP request Logging (morgan)
 - Linting & Prettier
 - MongoDB & Mongoose set up and ready to use
 - Scripting abilities
