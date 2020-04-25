@@ -19,7 +19,7 @@ cd newRepo/
 
 # Pull it in
 git init
-git remote add base TODO
+git remote add base https://github.com/carterjbastian/server-starter.git
 git pull base master
 git remote remove base
 
