@@ -23,13 +23,13 @@ git remote add base https://github.com/carterjbastian/server-starter.git
 git pull base master
 git remote remove base
 
-# Change DB_NAME in initMongo.js to use a new local db name
 # Set it up
 npm install
 mongod &
-npm run dev
+npm run dev  # Try hitting /api/ping
 
 # Test your db connection
+# Change DB_NAME in initMongo.js to use a new local db name
 node src/scripts/addMetadata.js # Then hit /api/metadata to verify
 ```
 
