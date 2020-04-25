@@ -10,8 +10,9 @@ Set up ready to go with:
 - Linting & Prettier
 - MongoDB & Mongoose set up and ready to use
 - Scripting abilities
+- Heroku Deployability
 
-## Set up
+## Code Set up
 
 ```
 cd newRepo/
@@ -28,6 +29,12 @@ npm install
 mongod &
 npm run dev
 
-# Test your deb connection
+# Test your db connection
 node src/scripts/addMetadata.js # Then hit /api/metadata to verify
 ```
+
+## Prod Set Up
+
+1. Create a new default project in Heroku
+2. Provision MLab Add on
+3. Connect to Github Repo and Deploy
