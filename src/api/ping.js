@@ -26,3 +26,22 @@ app.get('/metadata', async (req, res) => {
     example: firstMetadata,
   })
 })
+
+app.post('/metadata', async (req, res) => {
+  const newVal = req.body.updateValue
+  let updated = await Metadata.findOneAndUpdate(
+    {},
+    {
+      $push: {
+        records: newVal,
+      },
+    },
+    {
+      new: true,
+    },
+  )
+  res.send({
+    count: 1,
+    example: updated,
+  })
+})
