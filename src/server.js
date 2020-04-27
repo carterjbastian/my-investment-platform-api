@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -15,6 +16,9 @@ const app = express()
 // III. Set up middleware
 // enable http request logging
 app.use(morgan('dev'))
+
+// Enable Cross Origin Requests TODO(carter): restrict better
+app.use(cors())
 
 // enable json message body
 app.use(bodyParser.urlencoded({ extended: true }))
