@@ -1,5 +1,5 @@
-let Metadata = require('./metadata')
+let User = require('./user')
 
 module.exports = {
-  Metadata,
+  User,
 }

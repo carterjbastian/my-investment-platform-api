@@ -30,7 +30,7 @@ app.use(cookieParser()) // TODO(carter): Add JWT secret parsing
 // IV. Set up the routes
 // Set the routes:
 app.get('/', async (req, res) => {
-  res.send('Base API')
+  res.send('My Investment Platform API')
 })
 
 app.use('/api', require('./api'))
