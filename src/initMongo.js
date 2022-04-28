@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
 
-const DB_NAME = 'baseServer'
+const DB_NAME = 'my-investment-platform'
 const DB_URI = process.env.MONGODB_URI || `mongodb://localhost:27017/${DB_NAME}`
 
 module.exports = () => {
