@@ -45,7 +45,7 @@ app.post('/user', async (req, res) => {
 })
 
 /*
- * GET /api/portal-link
+ * GET /api/portal-link/:userId
  *
  * A route retrieving the dynamic, magic link that
  * an investor can use to access their Check Investor Status portal.
@@ -108,6 +108,52 @@ app.get('/portal-link/:userId', async (req, res) => {
       },
       {},
     )
+
+    // Return portalLink for this user to the front end
+    return res.send({
+      portalLink,
+      investor,
+    })
+  } catch (err) {
+    return res.status(500).send(err)
+  }
+})
+
+/*
+ * GET /api/get-ci-investor/:userId
+ *
+ * A route retrieving the the Check Investor Status investor for your user.
+ * 
+ * This route hits the Check Investor Status endpoint /platform/investors/lookup/:investorId,
+ * which fetches an investor associated with your platform.
+ */
+app.get('/get-ci-investor/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  // Get MyInvestmentPlatform user from your database
+  const {
+    checkInvestorStatusId,
+  } = await await User.findOne({ _id: mongoose.Types.ObjectId(userId) })
+
+  try {
+    // Make a request to the Check Investor Status platform API
+    let response = await axios.get(
+      `https://check-investor-status.herokuapp.com/platform/investors/lookup/${checkInvestorStatusId}`,
+      // Headers including authorization
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          // Your secret key lives in your environment variables
+          'X-API-ACCESS': process.env.CI_API_SECRET_KEY,
+        },
+      },
+    )
+
+    // Deconstruct the response
+    let {
+      investor,  // Investor model
+      portalLink,  // What we care about
+    } = response.data
 
     // Return portalLink for this user to the front end
     return res.send({
