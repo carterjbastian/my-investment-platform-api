@@ -65,7 +65,7 @@ app.get('/portal-link/:userId', async (req, res) => {
     email,
     businessType,
     sponsor,
-  } = await await User.findOne({ _id: mongoose.Types.ObjectId(userId) })
+  } = await User.findOne({ _id: mongoose.Types.ObjectId(userId) })
 
   try {
     // Make a request to the Check Investor Status platform API
